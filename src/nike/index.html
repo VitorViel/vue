@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Vue Product List</title>
+
+</head>
+<body>
+    
+    <div class="nav-bar"> <h1><a href="../index.html"> Home <i class="fa fa-home"></i></a></div></h1>
+
+    <div id="app">
+        <div class="container">
+            <div class="product marca fundo">
+                <center><h1>{{ product }} - Nike</h1></center>
+
+                    <br><br>
+                    <img class="img-produto" v-bind:src="image">
+            
+                    <p v-if="qtd > 10">In Stock = {{ qtd }} pairs</p>
+                    <p v-else-if="qtd >= 1 && 10 > qtd">Almost Sould Out!</p>
+                    <p v-else>Out of Stock</p>
+                    <h2>{{ desc }}</h2>
+                
+            </div>
+        
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="script.js"></script>
+</body>
+</html>

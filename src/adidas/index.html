@@ -13,20 +13,23 @@
 </head>
 <body>
     
-    <div class="nav-bar"> <h1><a href="../index.html"> Home <i class="fa fa-home"></i></a></div></h1>
+    <div class="nav-bar"> <h1><div class="icones"><a href="../index.html"><i class="fa fa-home"></div></i></a><div class="titulo">ADIDAS</div></div></h1>
 
     <div id="app">
         <div class="container">
-            <div class="product marca fundo">
-                <center><h1>{{ product }} - Adidas</h1></center>
-
-                    <br><br>
+            <div class="product fundo">
+                <h1><b>{{ product }}</h1></b>
                     <img class="img-produto" v-bind:src="image">
+
+                <div class="product-info">
             
                     <p v-if="qtd > 10">In Stock = {{ qtd }} pairs</p>
                     <p v-else-if="qtd >= 1 && 10 > qtd">Almost Sould Out!</p>
                     <p v-else>Out of Stock</p>
-                    <h2>{{ desc }}</h2>
+                    <p if="desconto">Em promoção!</p>
+                <h2>{{ desc }}</h2>
+
+                </div>
                 
             </div>
         

@@ -16,31 +16,10 @@
     <div class="nav-bar"> <h1><div class="icones"><a href="../index.html"><i class="fa fa-home"></div></i></a><div class="titulo">NIKE</div></div></h1>
 
     <div id="app">
-        <div class="container">
-            <div class="product fundo">
-                <h1>{{ product }}</h1>
-                    <img class="img-produto" v-bind:src="image">
-
-                <div class="product-info">
-            
-                    <p v-if="qtd > 10">In Stock = {{ qtd }} pairs</p>
-                    <p v-else-if="qtd >= 1 && 10 > qtd">Almost Sould Out!</p>
-                    <p v-else>Out of Stock</p>
-                    <p if="desconto">Em promoção!</p>
-                    <div v-for="variant in variants" :key="variant.variantId">
-                        <p @mouseover="updateImage(variant.variantImage)">{{ variant.variantColor }}</p>
-                    </div>
-                    <div v-for="tamanho in tamanhos" :key="tamanho.tamanhoId">
-                        <p>{{ tamanho.tamanhoSize }} </p>
-                    </div>
-                    <h2>{{ desc }}</h2>
-                </div>
-
-                <button v-on:click="addToCart">Adicionar ao carrinho</button>
-                <div class="cart">
-                    <p>Cart{{ cart }}</p>
-                </div>
-            </div>
+        <div class="cart">
+            <p>Cart{{ cart.length }}</p>
+        </div>
+        <product :detail="detail" @add-to-cart="updateCart"></product>
     </div>
 
 

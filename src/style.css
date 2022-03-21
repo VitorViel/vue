@@ -2,7 +2,7 @@ body {
     color:#282828;
     margin: 0px;
     background-image: url('../img/fundoloja3.jpg');
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-attachment: fixed;
     background-size: 110%;
   }
@@ -19,7 +19,6 @@ body {
     grid-template-rows: repeat(3, 1fr);
     justify-content: center;
     font-weight: bold;
-    max-height: 300px;
   }
 
   .container div h1{

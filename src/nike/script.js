@@ -1,12 +1,13 @@
-Vue.component('product',{
+Vue.component('product', {
     props: {
         detail: {
             type: String,
             required: true
         }
     },
-    template:`
-    <div class="container">
+    template: `
+    <div>
+        <div class="container">
             <div class="fundo">
                 <h1>{{ title }}</h1>
                 <div class="alinha-horizontal-semquebra">
@@ -32,7 +33,7 @@ Vue.component('product',{
                     </div>
 
                 </div>
-                    <p>details: {{ detail }}</p>
+                    details: {{ detail }}
                     <h2>R$ {{ price }}</h2>
 
                 <button v-on:click="addToCart" 
@@ -44,74 +45,77 @@ Vue.component('product',{
                         :class="{ disabledButton: !inStock }">Remover do carrinho</button>
                 
             </div>
-
-            <product-review @review-submitted="addReview"></product-review>
         </div>
+
+        <product-tabs :reviews="reviews"></product-tabs>
+
+            
+    </div>
 
     `,
     data() {
         return {
-        product: 'SOCKS',
-        brand: 'Vue Mastery',
-        price: 2.99,
-        selectedVariant: 0,
-        desconto : false,
-        variants: [
-            {
-                variantId: 1,
-                variantColor: 'black',
-                variantImage: '../../img/nike/meiapreta.png',
-                variantQuantity: 10 
-            },
-            {
-                variantId:2,
-                variantColor: 'white',
-                variantImage: '../../img/nike/meiabranca.png',
-                variantQuantity: 10
-            }
-        ],
+            product: 'SOCKS',
+            brand: 'Vue Mastery',
+            price: 2.99,
+            selectedVariant: 0,
+            desconto: false,
+            variants: [
+                {
+                    variantId: 1,
+                    variantColor: 'black',
+                    variantImage: '../../img/nike/meiapreta.png',
+                    variantQuantity: 10
+                },
+                {
+                    variantId: 2,
+                    variantColor: 'white',
+                    variantImage: '../../img/nike/meiabranca.png',
+                    variantQuantity: 10
+                }
+            ],
 
 
-        tamanhos: [
-            {
-                tamanhoId:101,
-                tamanhoSize:"35"
-            },
-            {
-                tamanhoId:102,
-                tamanhoSize:"37"
-            },
-            {
-                tamanhoId:103,
-                tamanhoSize:"41"
-            }
+            tamanhos: [
+                {
+                    tamanhoId: 101,
+                    tamanhoSize: "35"
+                },
+                {
+                    tamanhoId: 102,
+                    tamanhoSize: "37"
+                },
+                {
+                    tamanhoId: 103,
+                    tamanhoSize: "41"
+                }
             ],
 
             reviews: []
         }
     },
 
-        methods: {
-            updateProduct(index) {
-                this.selectedVariant = index
-            },
+    methods: {
+        updateProduct(index) {
+            this.selectedVariant = index
+        },
 
-            addToCart () {
-                this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
-                console.log('Adicionado ao carrinho')
-            },
-            
-            dellToCart() {
-                this.$emit('dell-to-cart', this.variants[this.selectedVariant].variantId)
-                console.log('Deletado do carrinho')
-            },
-            cleanToCart() {
-                this.$emit('clean-to-cart', this.variants[this.selectedVariant].variantId)
-                console.log('Carrinho está vazio')
-            },
-            addReview(productReview) {
-                this.reviews.push(productReview)
-            }
+        addToCart() {
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
+            console.log('Adicionado ao carrinho')
+        },
+
+        dellToCart() {
+            this.$emit('dell-to-cart', this.variants[this.selectedVariant].variantId)
+            console.log('Deletado do carrinho')
+        },
+        cleanToCart() {
+            this.$emit('clean-to-cart', this.variants[this.selectedVariant].variantId)
+            console.log('Carrinho está vazio')
+        },
+        addReview(productReview) {
+            this.reviews.push(productReview)
+        }
     },
 
     computed: {
@@ -123,27 +127,34 @@ Vue.component('product',{
             return this.variants[this.selectedVariant].variantImage
         },
 
-        inStock(){
+        inStock() {
             return this.variants[this.selectedVariant].variantQuantity
         },
     }
-})      
+})
 
 Vue.component('product-review', {
     template: `
-    <form class="review-form" @submit.prevent="onSubmit">
+    <form class="review-form fundo" @submit.prevent="onSubmit">
+
+    <p v-if="errors.length">
+        <b>Corriga o(s) seguinte(s) erro(s):</b>
+            <ul>
+                <li v-for="error in errors"> {{ error }} </p></li>
+            </ul>
+    </p>
     <p>
-      <label for="name">Name:</label>
-      <input id="name" v-model="name" placeholder="name">
+      <label for="name">Nome:</label>
+      <input id="name" v-model="name" required>
     </p>
     
     <p>
-      <label for="review">Review:</label>      
-      <textarea id="review" v-model="review"></textarea>
+      <label for="review">Descrição:</label>      
+      <textarea id="review" v-model="review" required></textarea>
     </p>
     
     <p>
-      <label for="rating">Rating:</label>
+      <label for="rating">Avaliação:</label>
       <select id="rating" v-model.number="rating">
         <option>5</option>
         <option>4</option>
@@ -152,49 +163,112 @@ Vue.component('product-review', {
         <option>1</option>
       </select>
     </p>
-        
+
     <p>
-      <input type="submit" value="Submit">  
+      <label for="recomendacao">Recomendaria esse produto?</label>
+      <select id="recomendacao" v-model="recomendacao">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    </p>
+    
+
+    <p>
+      <input type="submit" value="Enviar avaliação">  
     </p>    
   
   </form>
     `,
     data() {
         return {
-          name: null,
-          review: null,
-          rating: null
+            name: null,
+            review: null,
+            rating: null,
+            recomendacao: null,
+            errors: [],
         }
-      },
-      methods: {
+    },
+    methods: {
         onSubmit() {
-            let productReview = {
-            name: this.name,
-            review: this.review,
-            rating: this.rating
+            if (this.name && this.review && this.rating && this.recomendacao) {
+                let productReview = {
+                    name: this.name,
+                    review: this.review,
+                    rating: this.rating,
+                    recomendacao: this.recomendacao
+                }
+                this.$emit('review-submitted', productReview)
+                this.name = null
+                this.review = null
+                this.rating = null
+                this.recomendacao = null
             }
-            this.$emit('review-submitted', productReview)
-            this.name = null
-            this.review = null
-            this.rating = null
-      }
+
+            else {
+                if (!this.name) this.errors.push("O campo Nome não pode ser vazio")
+                if (!this.review) this.errors.push("O campo Descrição não pode ser vazio")
+                if (!this.rating) this.errors.push("O campo Avaliação não pode ser vazio")
+                if (!this.recomendacao) this.errors.push("O campo Recomendação não pode ser vazio")
+            }
+
+        }
     }
-  })
+})
+
+ Vue.component('product-tabs', {
+     props: {
+        reviews:{
+            type:Array,
+            required:true
+        }
+     },
+      template: `
+        <div>
+          <span class="tab" 
+          :class="{ activateTab: selectedTab === tab}"
+          v-for="(tab, index) in tabs"
+          :key="index">
+          @click="selectedTab= tab"
+          {{ tab }}</span>
+
+          <div class="reviews fundo-review">
+                <h1>Avaliações</h1>
+                <p v-if= "!reviews.length">Não temos avaliação ainda... Gostaria de ser o primeiro?</p>
+                <ul class="avaliacoes ">
+                    <li class="fundo-review" v-for="review in reviews">
+                        <p><b>Nome: </b>{{ review.name }}</p>
+                        <p><b>Descrição:</b> </p>{{ review.review }}
+                        <p><b>Avaliação:</b> </p>{{ review.rating }}
+                        <p><b>Recomendaria esse produto?</b> </p>{{ review.recomendacao }}
+                    </li>
+                </ul>
+            </div>
+
+            <product-review @review-submitted="addReview"></product-review>
+        </div>
+      `,
+      data() {
+        return {
+          tabs: ['Reviews', 'Make a Review'],
+          selectedTab: 'Reviews'
+        }
+      }
+    })
 
 var app = new Vue({
-    el: '#app',        
-    data:{
+    el: '#app',
+    data: {
         detail: 'this is the details of the product',
-        cart:[],
+        cart: [],
     },
-    methods:{
-        updateCart(id){
+    methods: {
+        updateCart(id) {
             this.cart.push(id)
         },
-        deleteCart(id){
+        deleteCart(id) {
             this.cart.pop(id)
         },
-        cleanCart(){
+        cleanCart() {
             this.cart = []
             console.log('Carrinho limpo com sucesso!!')
         }

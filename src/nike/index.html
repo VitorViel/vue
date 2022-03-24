@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="UTF-8">
@@ -11,15 +12,23 @@
     <title>Vue Product List</title>
 
 </head>
-<body>
-    
-    <div class="nav-bar"> <h1><div class="icones"><a href="../index.html"><i class="fa fa-home"></div></i></a><div class="titulo">NIKE</div></div></h1>
 
+<body>
     <div id="app">
-        <div class="cart">
-            <p>Cart{{ cart.length }}</p>
-            <button v-on:click="cleanCart" >Limpar carrinho</button>
+
+        <div class="nav-bar">
+            <div class="icones">
+                <a href="../index.html">
+                    <i class="fa fa-home"></i>
+                </a>
+            </div>
+            <div class="titulo">NIKE</div>
+            <div class="cart">
+                <p>Items no carrinho<br>({{ cart.length }})</p>
+                <button v-on:click="cleanCart">Limpar carrinho</button>
+            </div>
         </div>
+
         <product :detail="detail" @add-to-cart="updateCart" @dell-to-cart="deleteCart"></product>
     </div>
 
@@ -27,4 +36,5 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

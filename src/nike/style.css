@@ -6,6 +6,10 @@ body {
   background-size: 110%;
 }
 
+html{
+  margin: 0px;
+}
+
 p{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 15px;
@@ -14,32 +18,52 @@ p{
   font-weight: bold;
 }
 
+.avaliacoes p{
+  font-weight: normal;
+}
+
+.reviews h1{
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+
 .img-produto{
   width: 30%;
   height: 20%;
   margin: 15px;
 }
 
-.icones{
-  border:solid;
+.icones a{
+  border: solid;
   border-color: transparent;
   text-align: center;
   border-radius: 5px;
-  max-width: 60px;
-  margin-left: 10px;
   transition: background-color 400ms linear;
+  font-size: 40px;
+  display: inline-block;
+  flex: 0 1 100px;
+  height: 70px;
+  width: 70px;
+  margin-top: 5px;
 }
 
-.icones:hover{
+.icones{
+      flex: 1;
+      flex-basis: 1%;
+}
+
+.icones:hover a{
   border: solid;
   background-color:darkcyan;
 }
 
 .container{
-  margin-left: 20px;
+  margin-left: 25px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
+  padding-bottom: 50px;
 }
 
 .container div h1{
@@ -65,7 +89,21 @@ p{
   font-style: italic;
   font-weight: bold;
   text-align: center;
-  margin-top: -4%;
+  display: inline-block;
+  flex: 1;
+  padding-left: 10%;
+}
+
+.avaliacoes li{
+  list-style: none;
+  flex-basis: 24%;
+}
+
+.avaliacoes{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1%;
+  padding-left: 0px;
 }
 
 .nav-bar {
@@ -73,7 +111,9 @@ p{
   height: 80px;
   margin-bottom: 15px;
   width: 100%;
-  margin-top: -10px;
+  display: flex;
+  gap: 30%;
+  padding-inline: 55px;
 }
 
 .fundo{
@@ -81,6 +121,14 @@ p{
   background-color:rgba(255,255,255,.2);
   color:black;
   padding: 5%;
+}
+
+.fundo-review{
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  background-color:rgba(255,255,255,.2);
+  color:black;
+  padding: 2%;
+  width: 95%;
 }
 
 .alinha-horizontal-semquebra{
@@ -94,10 +142,24 @@ p{
 }
 
 .cart {
-  margin-right: 25px;
-  float: right;
-  border: 1px solid;
-  padding: 5px 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
+  flex-basis: 1%;
+}
+
+.cart h2{
+  font-weight: bold;
+}
+
+.cart p{
+  width: 150px;
+}
+
+.reviews{
+  margin-left: 25px;
 }
 
 button {

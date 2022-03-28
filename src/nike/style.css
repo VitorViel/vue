@@ -97,6 +97,7 @@ p{
 .avaliacoes li{
   list-style: none;
   flex-basis: 24%;
+  margin-top: 1%;
 }
 
 .avaliacoes{
@@ -129,10 +130,6 @@ p{
   color:black;
   padding: 2%;
   width: 95%;
-}
-
-.alinha-horizontal-semquebra{
-  flex-flow: row nowrap;
 }
 
 .color-box {

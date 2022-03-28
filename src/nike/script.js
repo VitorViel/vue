@@ -236,7 +236,7 @@ Vue.component('product-review', {
                 @click="selectedTab = tab"
                 >{{ tab }}</span>
 
-          <div v-show="selectedTab === 'Reviews //'" class="fundo-review reviews">
+          <div v-show="selectedTab === 'Avaliações /'" class="fundo-review reviews">
                 <h1>Avaliações</h1>
                 <p v-if= "!reviews.length">Não temos avaliação ainda... Gostaria de ser o primeiro?</p>
                 <ul v-else class="avaliacoes">
@@ -249,12 +249,12 @@ Vue.component('product-review', {
                 </ul>
             </div>
 
-            <product-review v-show="selectedTab === 'Make a Review'"></product-review>
+            <product-review v-show="selectedTab === 'Fazer uma avaliação'"></product-review>
         </div>
       `,
       data() {
         return {
-          tabs: ['Reviews //', 'Make a Review'],
+          tabs: ['Avaliações /', 'Fazer uma avaliação'],
           selectedTab: 'Reviews'
         }
       }

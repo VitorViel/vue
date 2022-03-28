@@ -107,6 +107,11 @@ p{
   padding-left: 0px;
 }
 
+.product-tabs tabs{
+  font-style: italic;
+  font-weight: bold;
+}
+
 .nav-bar {
   background: linear-gradient(-90deg, white, #16C0B0);
   height: 80px;

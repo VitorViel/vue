@@ -1,6 +1,6 @@
 body {
   margin: 0px;
-  background-image: url('../../img/fundoloja3.jpg');
+  background-image: url('../../img/fundoloja4.jpg');
   background-repeat: repeat;
   background-attachment: fixed;
   background-size: 110%;
@@ -55,7 +55,7 @@ p{
 
 .icones:hover a{
   border: solid;
-  background-color:darkcyan;
+  background-color:black;
 }
 
 .container{
@@ -94,6 +94,10 @@ p{
   padding-left: 10%;
 }
 
+.casa{
+  color: white;
+}
+
 .avaliacoes li{
   list-style: none;
   flex-basis: 24%;
@@ -113,7 +117,7 @@ p{
 }
 
 .nav-bar {
-  background: linear-gradient(-90deg, white, #16C0B0);
+  background: linear-gradient(-90deg, white, black);
   height: 80px;
   margin-bottom: 15px;
   width: 100%;

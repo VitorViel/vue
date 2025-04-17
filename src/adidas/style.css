@@ -27,7 +27,13 @@ p{
   border-radius: 5px;
   max-width: 60px;
   margin-left: 10px;
+  text-align: center;
   transition: background-color 400ms linear;
+  color: white;
+}
+
+.casa{
+  color: white;
 }
 
 .icones:hover{
